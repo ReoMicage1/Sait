@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Станция юных техников - Развиваем техническое творчество</title>
+    <meta name="description" content="Станция юных техников - образовательный центр для детей и подростков. Кружки по робототехнике, программированию, авиамоделированию и другим техническим направлениям.">
+<!-- Favicon -->
+    <link rel="icon" href="image.png" type="image/png">
+    <link rel="apple-touch-icon" href="image.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a3e72;
+            --secondary-color: #2a76d2;
+            --accent-color: #74bdd1;
+            --light-color: #f5f9ff;
+            --dark-color: #0d1f3d;
+            --text-color: #2d3748;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --event-color: #74bdd1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e62b8;
+            border-color: #1e62b8;
+            box-shadow: 0 6px 16px rgba(42, 118, 210, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.2);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(116, 189, 209, 0.3);
+        }
+
+        .btn-accent:hover {
+            background-color: #5da9c1;
+            border-color: #5da9c1;
+            box-shadow: 0 6px 16px rgba(116, 189, 209, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.5s ease;
+            transform: translateY(0);
+        }
+
+        .header.scroll-down {
+            transform: translateY(-100%);
+        }
+
+        .header.scroll-up {
+            transform: translateY(0);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            gap: 12px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 5px;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            font-weight: 500;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--white);
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-nav a.active:after {
+            display: none;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .search-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        .search-form {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            padding: 15px;
+            box-shadow: var(--box-shadow-hover);
+            border-radius: var(--border-radius);
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-form.active {
+            transform: translateY(10px);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-form .form-group {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid rgba(42, 118, 210, 0.2);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-right: 50px;
+        }
+
+        .search-form input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(42, 118, 210, 0.2);
+            outline: none;
+        }
+
+        .search-form button[type="submit"] {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .search-form button[type="submit"]:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 101;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(42, 118, 210, 0.05);
+        }
+
+        .search-results a:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .search-results a strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .search-results a span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(26, 62, 120, 0.9), rgba(42, 118, 210, 0.8));
+            color: var(--white);
+            padding: 120px 0;
+            overflow: hidden;
+            height: auto;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            animation: zoomInOut 20s infinite alternate;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f5f9ff"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f5f9ff"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f5f9ff"></path></svg>') no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-cards {
+            position: relative;
+            margin-top: 30px;
+            z-index: 10;
+            padding-bottom: 30px;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px) rotateY(15deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(42, 118, 210, 0.3);
+            transition: var(--transition);
+            transform: translateZ(30px);
+        }
+
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            transform: translateZ(20px);
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transform: translateZ(10px);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .section-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px) rotateY(10deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-card-image {
+            height: 180px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .section-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            transform: translateZ(20px);
+        }
+
+        .section-card:hover .section-card-image img {
+            transform: scale(1.05) translateZ(20px);
+        }
+
+        .section-card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+        }
+
+        .section-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            transform: translateZ(15px);
+        }
+
+        .section-card p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            flex: 1;
+            transform: translateZ(10px);
+        }
+
+        .section-card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transform: translateZ(5px);
+        }
+
+        .section-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .section-card .btn {
+            align-self: flex-start;
+            margin-top: auto;
+            transform: translateZ(10px);
+        }
+
+        .sections-filter {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            margin-bottom: 0;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .filter-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+        }
+
+        .filter-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(42, 118, 210, 0.2);
+            outline: none;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 15px;
+            grid-column: 1 / -1;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .filter-reset {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 1px solid #e2e8f0;
+        }
+
+        .filter-reset:hover {
+            background-color: rgba(116, 189, 209, 0.1);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%231a3e72"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%231a3e72"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231a3e72"></path></svg>') no-repeat;
+            background-size: cover;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-info i {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .quick-links i {
+            font-size: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .opening-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .opening-hours span:first-child {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--event-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(116, 189, 209, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #5da9c1;
+            transform: translateY(-3px) rotateY(10deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-15deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .slideInUp {
+            animation-name: slideInUp;
+        }
+
+        .rotateIn {
+            animation-name: rotateIn;
+        }
+
+        .pulse {
+            animation-name: pulse;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        .float {
+            animation-name: float;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--white);
+            border-bottom-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .custom-image {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .custom-image svg {
+            width: 80%;
+            height: 80%;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            max-width: 900px;
+            margin: 50px auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            position: relative;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--accent-color);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .modal-detail {
+            background-color: var(--light-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .modal-detail h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .modal-detail p {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        .modal-program {
+            margin-top: 30px;
+        }
+
+        .modal-program h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .modal-program ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .modal-program li {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .modal-footer {
+            padding: 20px;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .main-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .main-nav li {
+                margin-left: 0;
+            }
+
+            .main-nav a {
+                padding: 12px 15px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .filter-form {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20px auto;
+            }
+
+            .modal-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 80px 0;
+                height: auto;
+                min-height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .info-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-col {
+                margin-bottom: 30px;
+            }
+
+            .btn-large {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+
+            .modal-header h3 {
+                font-size: 1.4rem;
+                padding-right: 30px;
+            }
+
+            .modal-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="главная.html" class="logo">
+                    <img src="image.png" alt="Станция юных техников">
+                    <span>СЮТ</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="index (3).html">Направления</a></li>
+                        <li><a href="(Index (4).html">Мероприятия</a></li>
+                        <li><a href="index (5).html">Новости</a></li>
+                        <li><a href="index (2).html">О нас</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <form class="search-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Поиск по направлениям, мероприятиям..." required>
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results"></div>
+            </form>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content animated slideInUp">
+            <h1>Развиваем техническое творчество</h1>
+            <p>Станция юных техников - это современный образовательный центр, где дети и подростки осваивают перспективные технические направления и развивают инженерное мышление</p>
+            <div class="hero-buttons">
+                <a href="#directions" class="btn btn-primary btn-large pulse">
+                    <i class="fas fa-arrow-down"></i> Наши направления
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="info-cards">
+            <div class="info-cards-grid">
+                <div class="info-card animated fadeIn" style="animation-delay: 0.1s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Более 30 лет работы</h3>
+                    <p>Опыт в обучении детей техническим дисциплинам с 1987 года</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.2s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>1500+ выпускников</h3>
+                    <p>Наши ученики успешно поступают в технические вузы и работают в IT</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.3s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>200+ наград</h3>
+                    <p>Победы на региональных и всероссийских соревнованиях</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.4s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Квалифицированные педагоги</h3>
+                    <p>Преподаватели с опытом работы в технических областях</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="directions">
+        <div class="container">
+            <div class="section-title animated fadeIn">
+                <h2>Наши направления</h2>
+                <p>Выберите интересующее направление и начните свой путь в мире технологий и инноваций</p>
+            </div>
+            
+            <div class="sections-filter">
+                <form class="filter-form" id="sections-filter">
+                    <div class="filter-group">
+                        <label for="filter-age">Возраст</label>
+                        <select id="filter-age" class="filter-control">
+                            <option value="">Любой возраст</option>
+                            <option value="6-9">6-9 лет</option>
+                            <option value="10-13">10-13 лет</option>
+                            <option value="14-18">14-18 лет</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-category">Направление</label>
+                        <select id="filter-category" class="filter-control">
+                            <option value="">Все направления</option>
+                            <option value="robotics">Робототехника</option>
+                            <option value="programming">Программирование</option>
+                            <option value="aviation">Авиамоделирование</option>
+                            <option value="3d">3D-моделирование</option>
+                            <option value="electronics">Электроника</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-difficulty">Сложность</label>
+                        <select id="filter-difficulty" class="filter-control">
+                            <option value="">Любая сложность</option>
+                            <option value="beginner">Начинающий</option>
+                            <option value="intermediate">Средний</option>
+                            <option value="advanced">Продвинутый</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button type="submit" class="btn btn-primary">Применить фильтры</button>
+                        <button type="reset" class="btn btn-outline filter-reset">Сбросить</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="sections-grid">
+                <div class="section-card animated fadeIn" style="animation-delay: 0.1s;" data-age="10-13,14-18" data-category="programming" data-difficulty="beginner">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Программирование">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Программирование на Python</h3>
+                        <p>Основы программирования на языке Python: от простых алгоритмов до создания собственных приложений и игр.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 10-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="1">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.2s;" data-age="6-9,10-13" data-category="robotics" data-difficulty="beginner">
+                    <div class="section-card-image">
+                        <img src="https://schoo2dost.gosuslugi.ru/netcat_files/68/495/lego_boost_17101_vernie_2017_zusammengebaut_andres_lehmann_1000x667.jpg" alt="Робототехника">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Робототехника LEGO</h3>
+                        <p>Основы конструирования и программирования роботов на платформе LEGO Mindstorms EV3.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 8-14 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="2">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.3s;" data-age="10-13,14-18" data-category="aviation" data-difficulty="intermediate">
+                    <div class="section-card-image">
+                        <img src="https://р02.навигатор.дети/images/events/cover/6f5730b92c75df466a4f917a46db6c88_big.jpg" alt="Авиамоделирование">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Авиамоделирование</h3>
+                        <p>Создание летательных аппаратов от простейших моделей до радиоуправляемых самолетов и квадрокоптеров.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 12-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="3">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.4s;" data-age="10-13,14-18" data-category="3d" data-difficulty="intermediate">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="3D-моделирование">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>3D-моделирование</h3>
+                        <p>Обучение созданию 3D-моделей, работе с 3D-принтерами и сканерами, основам 3D-анимации.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 10-16 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="4">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.5s;" data-age="14-18" data-category="programming" data-difficulty="advanced">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Веб-разработка">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Веб-разработка</h3>
+                        <p>Создание современных веб-сайтов с использованием HTML, CSS, JavaScript и популярных фреймворков.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 14-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="5">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.6s;" data-age="10-13,14-18" data-category="electronics" data-difficulty="intermediate">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Электроника">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Основы электроники</h3>
+                        <p>Изучение основ электроники, создание схем и устройств на базе Arduino и других платформ.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 10-16 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="6">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.7s;" data-age="6-9,10-13" data-category="robotics" data-difficulty="beginner">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1478&q=80" alt="Робототехника WeDo">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Робототехника WeDo</h3>
+                        <p>Введение в робототехнику для самых маленьких с использованием конструкторов LEGO WeDo 2.0.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 8-12 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="7">Подробнее</button>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.8s;" data-age="10-13,14-18" data-category="programming" data-difficulty="intermediate">
+                    <div class="section-card-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="Мобильная разработка">
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Мобильная разработка</h3>
+                        <p>Создание мобильных приложений для Android и iOS с использованием современных технологий.</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 12-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <button class="btn btn-small btn-primary view-details" data-id="8">Подробнее</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="кружки.html" class="btn btn-primary btn-large pulse">Все направления</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Модальное окно для подробной информации -->
+    <div class="modal" id="direction-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Название направления</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" src="" alt="Направление" class="modal-image">
+                <p id="modal-description" class="modal-description"></p>
+                
+                <div class="modal-details">
+                    <div class="modal-detail">
+                        <h4>Возрастная группа</h4>
+                        <p id="modal-age"></p>
+                    </div>
+                    <div class="modal-detail">
+                        <h4>Расписание</h4>
+                        <p id="modal-schedule"></p>
+                    </div>
+                    <div class="modal-detail">
+                        <h4>Сложность</h4>
+                        <p id="modal-difficulty"></p>
+                    </div>
+                    <div class="modal-detail">
+                        <h4>Продолжительность</h4>
+                        <p id="modal-duration"></p>
+                    </div>
+                </div>
+                
+                <div class="modal-program">
+                    <h4>Программа курса</h4>
+                    <ul id="modal-program-list">
+                        <!-- Список будет заполнен JavaScript -->
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="enroll-btn">Записаться на курс</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>Станция юных техников</h3>
+                    <p>Муниципальное образовательное учреждение дополнительного образования для детей и подростков. Развиваем техническое творчество с 1987 года.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/sut_leningradskaj?ysclid=may5qfnbgu175995308" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/s/mbodosutlen" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://ok.ru/profile/588303204039/statuses" target="_blank"><i class="fab fa-odnoklassniki"></i></a>
+                        <a class="tahumsi-icon" href="#" target="_blank">
+                            <img src="image.png" alt="TAHUMSI">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="quick-links">
+                        <li><a href="главная.html"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="кружки.html"><i class="fas fa-chevron-right"></i> Направления</a></li>
+                        <li><a href="мероприятия.html"><i class="fas fa-chevron-right"></i> Мероприятия</a></li>
+                        <li><a href="новости.html"><i class="fas fa-chevron-right"></i> Новости</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Расписание</h3>
+                    <ul class="opening-hours">
+                        <li><span>Понедельник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Вторник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Среда</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Четверг</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Пятница</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Суббота</span> <span>Выходной</span></li>
+                        <li><span>Воскресенье</span> <span>Выходной</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Станция юных техников. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.loader-wrapper').fadeOut('slow');
+            }, 1000);
+
+            $('.mobile-menu-toggle').click(function() {
+                $(this).toggleClass('active');
+                $('.main-nav').toggleClass('active');
+            });
+            
+            $('.search-toggle').click(function() {
+                $('.search-form').toggleClass('active');
+                if ($('.search-form').hasClass('active')) {
+                    $('.search-form input').focus();
+                }
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.search-form, .search-toggle').length) {
+                    $('.search-form').removeClass('active');
+                    $('.search-results').removeClass('active');
+                }
+            });
+            
+            const searchData = [
+                {title: "Робототехника", url: "робототехника.html", category: "Направление"},
+                {title: "Программирование", url: "программирование.html", category: "Направление"},
+                {title: "Авиамоделирование", url: "авиамоделирование.html", category: "Направление"},
+                {title: "3D-моделирование", url: "3d-моделирование.html", category: "Направление"},
+                {title: "Технический хакатон", url: "мероприятие2.html", category: "Мероприятие"},
+                {title: "Выставка технического творчества", url: "мероприятие3.html", category: "Мероприятие"},
+                {title: "Открытый урок по робототехнике", url: "мероприятие1.html", category: "Мероприятие"},
+                {title: "Новости", url: "новости.html", category: "Раздел"},
+                {title: "Мероприятия", url: "мероприятия.html", category: "Раздел"}
+            ];
+            
+            $('.search-form input').on('input', function() {
+                const query = $(this).val().toLowerCase();
+                const resultsContainer = $('.search-results');
+                
+                if (query.length < 2) {
+                    resultsContainer.empty().removeClass('active');
+                    return;
+                }
+                
+                const results = searchData.filter(item => 
+                    item.title.toLowerCase().includes(query)
+                );
+                
+                if (results.length > 0) {
+                    let html = '';
+                    results.forEach(item => {
+                        html += `
+                            <a href="${item.url}">
+                                <strong>${item.title}</strong>
+                                <span>${item.category}</span>
+                            </a>
+                        `;
+                    });
+                    resultsContainer.html(html).addClass('active');
+                } else {
+                    resultsContainer.html('<div class="no-results">Ничего не найдено</div>').addClass('active');
+                }
+            });
+            
+            $('.search-form').submit(function(e) {
+                e.preventDefault();
+                const query = $(this).find('input').val().toLowerCase();
+                const result = searchData.find(item => 
+                    item.title.toLowerCase() === query
+                );
+                
+                if (result) {
+                    window.location.href = result.url;
+                } else {
+                    showAlert('Ничего не найдено. Попробуйте другой запрос.', 'error');
+                }
+            });
+            
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('active');
+                    $('.header').addClass('scroll-up');
+                } else {
+                    $('.back-to-top').removeClass('active');
+                    $('.header').removeClass('scroll-up');
+                }
+            });
+            
+            $('.back-to-top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 500);
+            });
+            
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(e) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 500, function() {
+                            var $target = $(target);
+                            if ($target.is(':focus')) {
+                                return false;
+                            } else {
+                                $target.attr('tabindex','-1');
+                                $target.focus();
+                            }
+                        });
+                    }
+                }
+            });
+            
+            $('#sections-filter').on('submit', function(e) {
+                e.preventDefault();
+                
+                const age = $('#filter-age').val();
+                const category = $('#filter-category').val();
+                const difficulty = $('#filter-difficulty').val();
+                
+                $('.section-card').each(function() {
+                    const card = $(this);
+                    const cardAge = card.data('age');
+                    const cardCategory = card.data('category');
+                    const cardDifficulty = card.data('difficulty');
+                    
+                    const ageMatch = !age || (cardAge && cardAge.includes(age));
+                    const categoryMatch = !category || cardCategory === category;
+                    const difficultyMatch = !difficulty || cardDifficulty === difficulty;
+                    
+                    if (ageMatch && categoryMatch && difficultyMatch) {
+                        card.show().addClass('animated fadeIn');
+                    } else {
+                        card.hide();
+                    }
+                });
+                
+                if ($('.section-card:visible').length === 0) {
+                    showAlert('По вашему запросу ничего не найдено. Попробуйте изменить параметры фильтра.', 'warning');
+                }
+            });
+            
+            $('#sections-filter').on('reset', function() {
+                $('.section-card').show().addClass('animated fadeIn');
+            });
+            
+            function animateOnScroll() {
+                $('.section-card, .info-card').each(function() {
+                    var elementPos = $(this).offset().top;
+                    var windowHeight = $(window).height();
+                    var scrollPos = $(window).scrollTop();
+                    
+                    if (elementPos < scrollPos + windowHeight - 100) {
+                        $(this).addClass('animated fadeIn');
+                    }
+                });
+            }
+            
+            $(window).scroll(animateOnScroll);
+            animateOnScroll();
+            
+            function validateEmail(email) {
+                var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function showAlert(message, type) {
+                var alert = $('<div class="alert alert-' + type + '">' + message + '</div>');
+                $('body').append(alert);
+                alert.css({
+                    'position': 'fixed',
+                    'top': '20px',
+                    'right': '20px',
+                    'padding': '15px 25px',
+                    'background': type === 'success' ? 'var(--success-color)' : 'var(--accent-color)',
+                    'color': 'white',
+                    'border-radius': 'var(--border-radius)',
+                    'box-shadow': 'var(--box-shadow)',
+                    'z-index': '9999',
+                    'animation': 'fadeIn 0.3s ease'
+                });
+                
+                setTimeout(function() {
+                    alert.animate({opacity: 0}, 300, function() {
+                        $(this).remove();
+                    });
+                }, 3000);
+            }
+
+            function checkScreenSize() {
+                if ($(window).width() <= 992) {
+                    $('.mobile-menu-toggle').show();
+                } else {
+                    $('.mobile-menu-toggle').hide();
+                    $('.main-nav').removeClass('active');
+                }
+            }
+
+            $(window).on('load resize', checkScreenSize);
+            checkScreenSize();
+
+            // Подсветка активного пункта меню
+            function highlightCurrentMenuItem() {
+                const currentPage = window.location.pathname.split('/').pop() || 'главная.html';
+                $('.main-nav a').removeClass('active');
+                $('.main-nav a[href="' + currentPage + '"]').addClass('active');
+            }
+
+            highlightCurrentMenuItem();
+
+            // Данные для модального окна направлений
+            const directionsData = {
+                1: {
+                    title: "Программирование на Python",
+                    image: "https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    description: "Курс по программированию на Python предназначен для детей и подростков, которые хотят освоить один из самых популярных языков программирования. На занятиях учащиеся познакомятся с основами программирования, научатся писать чистый и эффективный код, создавать собственные приложения и игры. Курс развивает логическое и алгоритмическое мышление, учит решать сложные задачи и работать в команде.",
+                    age: "10-18 лет",
+                    schedule: "2 раза в неделю по 1,5 часа",
+                    difficulty: "Начинающий",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Введение в программирование и Python",
+                        "Основные конструкции языка: переменные, операторы, условия",
+                        "Циклы и работа с коллекциями данных",
+                        "Функции и модули",
+                        "Работа с файлами и обработка исключений",
+                        "Основы объектно-ориентированного программирования",
+                        "Создание простых игр (крестики-нолики, змейка)",
+                        "Работа с библиотеками (Tkinter, Pygame)",
+                        "Основы веб-разработки с Flask",
+                        "Финальный проект: создание собственного приложения"
+                    ]
+                },
+                2: {
+                    title: "Робототехника LEGO",
+                    image: "https://schoo2dost.gosuslugi.ru/netcat_files/68/495/lego_boost_17101_vernie_2017_zusammengebaut_andres_lehmann_1000x667.jpg",
+                    description: "Курс по робототехнике на базе конструкторов LEGO Mindstorms EV3 знакомит детей с основами конструирования и программирования роботов. Учащиеся научатся собирать различные модели роботов, программировать их поведение с помощью визуального языка программирования, решать практические задачи. Курс развивает инженерное мышление, креативность и навыки работы в команде.",
+                    age: "8-14 лет",
+                    schedule: "2 раза в неделю по 1,5 часа",
+                    difficulty: "Начинающий",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Знакомство с конструктором LEGO Mindstorms EV3",
+                        "Основы механики и кинематики",
+                        "Сборка простых механизмов",
+                        "Программирование моторов и датчиков",
+                        "Создание роботов, реагирующих на окружающую среду",
+                        "Роботы с автономным управлением",
+                        "Участие в мини-соревнованиях",
+                        "Работа над командными проектами",
+                        "Подготовка к соревнованиям по робототехнике",
+                        "Финальный проект: создание сложного робота"
+                    ]
+                },
+                3: {
+                    title: "Авиамоделирование",
+                    image: "https://р02.навигатор.дети/images/events/cover/6f5730b92c75df466a4f917a46db6c88_big.jpg",
+                    description: "Курс по авиамоделированию знакомит учащихся с основами аэродинамики, конструкцией летательных аппаратов и принципами их управления. На занятиях дети научатся создавать различные модели самолетов и квадрокоптеров - от простейших бумажных до радиоуправляемых. Курс развивает инженерное мышление, точность и аккуратность, а также дает практические навыки работы с инструментами и материалами.",
+                    age: "12-18 лет",
+                    schedule: "2 раза в неделю по 2 часа",
+                    difficulty: "Средний",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Основы аэродинамики и конструкции летательных аппаратов",
+                        "Создание простейших бумажных моделей",
+                        "Модели из пенопласта и бальзы",
+                        "Электрические модели с резиномотором",
+                        "Радиоуправляемые модели самолетов",
+                        "Конструирование и сборка квадрокоптеров",
+                        "Основы пилотирования",
+                        "Участие в соревнованиях по авиамодельному спорту",
+                        "Ремонт и модернизация моделей",
+                        "Финальный проект: создание собственной модели"
+                    ]
+                },
+                4: {
+                    title: "3D-моделирование",
+                    image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    description: "Курс по 3D-моделированию знакомит учащихся с современными технологиями создания трехмерных объектов. На занятиях дети научатся работать с профессиональными программами для 3D-моделирования (Blender, TinkerCAD), создавать собственные модели, готовить их к печати на 3D-принтере. Курс развивает пространственное мышление, креативность и дает практические навыки работы с цифровыми технологиями.",
+                    age: "10-16 лет",
+                    schedule: "2 раза в неделю по 1,5 часа",
+                    difficulty: "Средний",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Знакомство с интерфейсом программ для 3D-моделирования",
+                        "Основные инструменты и техники моделирования",
+                        "Создание простых геометрических объектов",
+                        "Моделирование сложных форм и поверхностей",
+                        "Работа с текстурами и материалами",
+                        "Основы 3D-анимации",
+                        "Подготовка моделей к 3D-печати",
+                        "Работа с 3D-принтерами и сканерами",
+                        "Создание собственных проектов",
+                        "Финальный проект: разработка сложной 3D-модели"
+                    ]
+                },
+                5: {
+                    title: "Веб-разработка",
+                    image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+                    description: "Курс по веб-разработке знакомит учащихся с современными технологиями создания веб-сайтов. На занятиях подростки научатся верстать страницы с помощью HTML и CSS, добавлять интерактивность с помощью JavaScript, работать с популярными фреймворками. Курс дает практические навыки, востребованные на рынке труда, и может стать первым шагом к карьере в IT.",
+                    age: "14-18 лет",
+                    schedule: "2 раза в неделю по 2 часа",
+                    difficulty: "Продвинутый",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Основы HTML и верстки",
+                        "Стилизация с помощью CSS",
+                        "Адаптивный и отзывчивый дизайн",
+                        "Основы программирования на JavaScript",
+                        "Работа с DOM и событиями",
+                        "AJAX и работа с API",
+                        "Введение в фреймворки (React или Vue)",
+                        "Основы backend-разработки",
+                        "Работа с базами данных",
+                        "Финальный проект: создание полноценного веб-приложения"
+                    ]
+                },
+                6: {
+                    title: "Основы электроники",
+                    image: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80",
+                    description: "Курс по основам электроники знакомит учащихся с принципами работы электронных устройств. На занятиях дети научатся читать электрические схемы, паять, программировать микроконтроллеры Arduino, создавать собственные электронные устройства. Курс развивает логическое мышление, дает практические навыки работы с электронными компонентами и основы программирования микроконтроллеров.",
+                    age: "10-16 лет",
+                    schedule: "2 раза в неделю по 1,5 часа",
+                    difficulty: "Средний",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Основы электричества и электроники",
+                        "Работа с мультиметром и другими измерительными приборами",
+                        "Чтение электрических схем",
+                        "Основы пайки",
+                        "Работа с макетными платами",
+                        "Программирование Arduino",
+                        "Подключение и работа с датчиками",
+                        "Создание простых электронных устройств",
+                        "Основы автоматизации",
+                        "Финальный проект: разработка собственного устройства"
+                    ]
+                },
+                7: {
+                    title: "Робототехника WeDo",
+                    image: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1478&q=80",
+                    description: "Курс по робототехнике на базе конструкторов LEGO WeDo 2.0 предназначен для самых маленьких инженеров. В игровой форме дети познакомятся с основами механики и программирования, научатся собирать простые механизмы и программировать их поведение. Курс развивает мелкую моторику, логическое мышление и креативность, прививает интерес к техническому творчеству.",
+                    age: "8-12 лет",
+                    schedule: "2 раза в неделю по 1 часу",
+                    difficulty: "Начинающий",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Знакомство с конструктором LEGO WeDo 2.0",
+                        "Сборка простых механизмов",
+                        "Основы программирования в визуальной среде",
+                        "Создание моделей с моторами",
+                        "Работа с датчиками движения и наклона",
+                        "Программирование реакций на внешние воздействия",
+                        "Создание первых роботов",
+                        "Работа в команде над проектами",
+                        "Участие в творческих конкурсах",
+                        "Финальный проект: создание сложного механизма"
+                    ]
+                },
+                8: {
+                    title: "Мобильная разработка",
+                    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80",
+                    description: "Курс по мобильной разработке знакомит подростков с процессом создания приложений для смартфонов и планшетов. Учащиеся научатся разрабатывать приложения для платформ Android и iOS, работать с интерфейсами, базами данных и API. Курс дает практические навыки, востребованные на рынке труда, и может стать первым шагом к карьере в мобильной разработке.",
+                    age: "12-18 лет",
+                    schedule: "2 раза в неделю по 2 часа",
+                    difficulty: "Средний",
+                    duration: "9 месяцев (72 занятия)",
+                    program: [
+                        "Введение в мобильную разработку",
+                        "Основы языка программирования (Java/Kotlin или Swift)",
+                        "Работа со средой разработки (Android Studio или Xcode)",
+                        "Создание пользовательских интерфейсов",
+                        "Работа с базами данных в мобильных приложениях",
+                        "Использование API и сетевых запросов",
+                        "Основы Material Design и Human Interface Guidelines",
+                        "Публикация приложений в магазинах",
+                        "Монетизация приложений",
+                        "Финальный проект: разработка собственного приложения"
+                    ]
+                }
+            };
+
+            // Открытие модального окна с информацией о направлении
+            $('.view-details').click(function() {
+                const directionId = $(this).data('id');
+                const direction = directionsData[directionId];
+                
+                $('#modal-title').text(direction.title);
+                $('#modal-image').attr('src', direction.image);
+                $('#modal-description').text(direction.description);
+                $('#modal-age').text(direction.age);
+                $('#modal-schedule').text(direction.schedule);
+                $('#modal-difficulty').text(direction.difficulty);
+                $('#modal-duration').text(direction.duration);
+                
+                const programList = $('#modal-program-list');
+                programList.empty();
+                direction.program.forEach(item => {
+                    programList.append(`<li>${item}</li>`);
+                });
+                
+                $('#direction-modal').fadeIn();
+                $('body').css('overflow', 'hidden');
+            });
+
+            // Закрытие модального окна
+            $('.close-modal, #direction-modal').click(function(e) {
+                if ($(e.target).is('#direction-modal') || $(e.target).is('.close-modal')) {
+                    $('#direction-modal').fadeOut();
+                    $('body').css('overflow', 'auto');
+                }
+            });
+
+            // Запись на курс
+            $('#enroll-btn').click(function() {
+                const courseName = $('#modal-title').text();
+                showAlert(`Вы успешно записаны на курс "${courseName}"! Мы свяжемся с вами в ближайшее время.`, 'success');
+                $('#direction-modal').fadeOut();
+                $('body').css('overflow', 'auto');
+            });
+        });
+    </script>
+</body>
+</html>

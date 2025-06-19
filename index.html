@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Станция юных техников - Развиваем техническое творчество</title>
+    <meta name="description" content="Станция юных техников - образовательный центр для детей и подростков. Кружки по робототехнике, программированию, авиамоделированию и другим техническим направлениям.">
+<!-- Favicon -->
+    <link rel="icon" href="image.png" type="image/png">
+    <link rel="apple-touch-icon" href="image.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a3e72;
+            --secondary-color: #2a76d2;
+            --accent-color: #74bdd1; /* Изменен на цвет морской волны */
+            --light-color: #f5f9ff;
+            --dark-color: #0d1f3d;
+            --text-color: #2d3748;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --event-color: #74bdd1; /* Морская волна для событий */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e62b8;
+            border-color: #1e62b8;
+            box-shadow: 0 6px 16px rgba(42, 118, 210, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.2);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(116, 189, 209, 0.3);
+        }
+
+        .btn-accent:hover {
+            background-color: #5da9c1;
+            border-color: #5da9c1;
+            box-shadow: 0 6px 16px rgba(116, 189, 209, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        /* Обновленный хедер и навигация */
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scroll-down {
+            transform: translateY(-100%);
+        }
+
+        .header.scroll-up {
+            transform: translateY(0);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 5px;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            font-weight: 500;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--white);
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .main-nav a.active:after {
+            display: none;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .search-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        /* Улучшенный поиск */
+        .search-form {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            padding: 15px;
+            box-shadow: var(--box-shadow-hover);
+            border-radius: var(--border-radius);
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-form.active {
+            transform: translateY(10px);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-form .form-group {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid rgba(42, 118, 210, 0.2);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-right: 50px;
+        }
+
+        .search-form input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(42, 118, 210, 0.2);
+            outline: none;
+        }
+
+        .search-form button[type="submit"] {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .search-form button[type="submit"]:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 101;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-results a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(42, 118, 210, 0.05);
+        }
+
+        .search-results a:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .search-results a strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .search-results a span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Герой секция с анимированным фоном */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(26, 62, 120, 0.9), rgba(42, 118, 210, 0.8));
+            color: var(--white);
+            padding: 120px 0;
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            z-index: -1;
+            animation: zoomInOut 20s infinite alternate;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f5f9ff"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f5f9ff"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f5f9ff"></path></svg>') no-repeat;
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Инфо карточки с 3D эффектом */
+        .info-cards {
+            position: relative;
+            margin-top: 30px; /* Изменено с -50px на 30px */
+            z-index: 10;
+            padding-bottom: 30px;
+        }
+
+        .info-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px) rotateY(15deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(42, 118, 210, 0.3);
+            transition: var(--transition);
+            transform: translateZ(30px);
+        }
+
+        .info-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            transform: translateZ(20px);
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            transform: translateZ(10px);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Карточки новостей с 3D эффектом */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px) rotateY(10deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            transform: translateZ(20px);
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05) translateZ(20px);
+        }
+
+        .news-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--event-color); /* Изменен цвет на морскую волну */
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateZ(30px);
+        }
+
+        .news-content {
+            padding: 25px;
+            transform-style: preserve-3d;
+        }
+
+        .news-content h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            transform: translateZ(15px);
+        }
+
+        .news-content h3 a {
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .news-content h3 a:hover {
+            color: var(--secondary-color);
+        }
+
+        .news-meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            gap: 15px;
+            transform: translateZ(10px);
+        }
+
+        .news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-meta i {
+            font-size: 0.9rem;
+        }
+
+        .news-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            transform: translateZ(5px);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transform: translateZ(10px);
+        }
+
+        /* Карточки направлений с 3D эффектом */
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .section-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px) rotateY(10deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-card-image {
+            height: 180px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .section-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            transform: translateZ(20px);
+        }
+
+        .section-card:hover .section-card-image img {
+            transform: scale(1.05) translateZ(20px);
+        }
+
+        .section-card-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+        }
+
+        .section-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            transform: translateZ(15px);
+        }
+
+        .section-card p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            flex: 1;
+            transform: translateZ(10px);
+        }
+
+        .section-card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transform: translateZ(5px);
+        }
+
+        .section-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .section-card .btn {
+            align-self: flex-start;
+            margin-top: auto;
+            transform: translateZ(10px);
+        }
+
+        /* Секция мероприятий (бывшие отзывы) */
+        .events-section {
+            background-color: var(--primary-color);
+            padding: 60px 0;
+            color: var(--white);
+        }
+
+        .events-section .section-title h2,
+        .events-section .section-title p {
+            color: var(--white);
+        }
+
+        .events-section .section-title:after {
+            background: linear-gradient(90deg, var(--accent-color), var(--white));
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .event-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px) rotateY(5deg) rotateX(5deg);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .event-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--white);
+            transform: translateZ(15px);
+        }
+
+        .event-card p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+            transform: translateZ(10px);
+            flex-grow: 1;
+        }
+
+        .event-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            transform: translateZ(5px);
+        }
+
+        .event-card .btn {
+            margin-top: 15px;
+            transform: translateZ(10px);
+            align-self: flex-start;
+        }
+
+        /* Футер */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%231a3e72"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%231a3e72"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231a3e72"></path></svg>') no-repeat;
+            background-size: cover;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-info i {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .quick-links i {
+            font-size: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .opening-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .opening-hours span:first-child {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Кнопка "Наверх" с 3D эффектом */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--event-color); /* Изменен цвет на морскую волну */
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(116, 189, 209, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #5da9c1;
+            transform: translateY(-3px) rotateY(10deg);
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-15deg);
+                opacity: 0;
+            }
+            to {
+                transform: rotate(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .slideInUp {
+            animation-name: slideInUp;
+        }
+
+        .rotateIn {
+            animation-name: rotateIn;
+        }
+
+        .pulse {
+            animation-name: pulse;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+        }
+
+        .float {
+            animation-name: float;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+        }
+
+        /* Анимация загрузки */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--white);
+            border-bottom-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Кастомная картинка для карточек */
+        .custom-image {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .custom-image svg {
+            width: 80%;
+            height: 80%;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .main-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .main-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .main-nav li {
+                margin-left: 0;
+            }
+
+            .main-nav a {
+                padding: 12px 15px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .info-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .news-grid,
+            .sections-grid,
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-col {
+                margin-bottom: 30px;
+            }
+
+            .btn-large {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимация загрузки -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="image.png" alt="Станция юных техников">
+                    <span>СЮТ</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="index (3).html">Направления</a></li>
+                        <li><a href="(Index (4).html">Мероприятия</a></li>
+                        <li><a href="index (5).html">Новости</a></li>
+                        <li><a href="index (2).html">О нас</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <form class="search-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Поиск по направлениям, мероприятиям..." required>
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results"></div>
+            </form>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-background"></div>
+        <div class="hero-content animated slideInUp">
+            <h1>Развиваем техническое творчество</h1>
+            <p>Станция юных техников - это современный образовательный центр, где дети и подростки осваивают перспективные технические направления и развивают инженерное мышление</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="info-cards">
+            <div class="info-cards-grid">
+                <div class="info-card animated fadeIn" style="animation-delay: 0.1s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Более 24 лет работы</h3>
+                    <p>Опыт в обучении детей техническим дисциплинам с 2001 года</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.2s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3> Умелые ученики и школьники</h3>
+                    <p>Наши ученики успешно поступают в технические вузы</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.3s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Награды</h3>
+                    <p>Победы на региональных соревнованиях</p>
+                </div>
+                
+                <div class="info-card animated fadeIn" style="animation-delay: 0.4s;">
+                    <div class="info-card-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Квалифицированные учителя</h3>
+                    <p>Преподаватели с опытом работы в технических областях</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title animated fadeIn">
+                <h2>О Станции юных техников</h2>
+                <p>Мы создаем условия для развития технического творчества детей и подростков, помогаем раскрыть их потенциал и подготовить к профессиям будущего</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text animated fadeIn" style="animation-delay: 0.2s;">
+                    <p>Станция юных техников - муниципальная бюджетная организация дополнительного образования «Станция юных техников» станицы Ленинградской муниципального образования Ленинградский район (МБОДО СЮТ).</p>
+                    
+                    <p>Наша задача - выявление и поддержка талантливых детей, развитие их творческих способностей и технического мышления, профессиональная ориентация в мире современных технологий.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Современное оборудование и методики обучения</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Индивидуальный подход к каждому ребенку</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Участие в конкурсах и соревнованиях</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-title animated fadeIn">
+                <h2>Наши направления</h2>
+                <p>Выберите интересующее направление и начните свой путь в мире технологий и инноваций</p>
+            </div>
+            
+            <div class="sections-grid">
+                <div class="section-card animated fadeIn" style="animation-delay: 0.1s;">
+                    <div class="section-card-image">
+                        <div class="custom-image">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="white"/>
+                                <path d="M19.4 15C19.2669 15.3016 19.227 15.6362 19.2863 15.9606C19.3455 16.285 19.5008 16.5833 19.73 16.81L19.79 16.87C19.9025 16.9738 19.9953 17.0985 20.0636 17.2376C20.1319 17.3767 20.1744 17.5276 20.1889 17.6823C20.2034 17.837 20.1897 17.9926 20.1485 18.1418C20.1073 18.291 20.0393 18.4311 19.9481 18.5547C19.8569 18.6783 19.7441 18.7832 19.6156 18.8638C19.4871 18.9445 19.3453 18.9995 19.1979 19.0259C19.0505 19.0523 18.9003 19.0496 18.7542 19.018C18.6081 18.9864 18.4689 18.9264 18.3444 18.8413C18.2199 18.7562 18.1124 18.6476 18.0278 18.5216C17.9432 18.3956 17.8831 18.2546 17.8508 18.1061C17.8185 17.9576 17.8146 17.8044 17.8394 17.6548C17.8642 17.5052 17.9172 17.3621 17.9956 17.2335C18.074 17.1049 18.1763 16.9933 18.2966 16.9049C18.4169 16.8165 18.5529 16.753 18.6966 16.7181C18.8403 16.6832 18.9889 16.6776 19.1346 16.7016C19.2803 16.7256 19.4201 16.7787 19.5454 16.8578L19.61 16.91C19.5676 16.7935 19.5017 16.6864 19.4161 16.5954C19.3305 16.5044 19.227 16.4315 19.1121 16.3812C18.9972 16.3309 18.8733 16.3043 18.748 16.3031C18.6227 16.3019 18.4984 16.3261 18.3826 16.3743C18.2668 16.4225 18.162 16.4937 18.0749 16.5835C17.9878 16.6733 17.9202 16.7797 17.8766 16.8962C17.833 17.0127 17.8143 17.1367 17.8218 17.2605C17.8293 17.3843 17.8628 17.5051 17.92 17.6154L12 15Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Робототехника</h3>
+                        <p>Изучение основ конструирования и программирования роботов на платформах Arduino, Lego Mindstorms и других</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 8-16 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <a href="робототехника.html" class="btn btn-small btn-primary">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.2s;">
+                    <div class="section-card-image">
+                        <div class="custom-image">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 5H20V7H4V5Z" fill="white"/>
+                                <path d="M4 9H20V11H4V9Z" fill="white"/>
+                                <path d="M4 13H20V15H4V13Z" fill="white"/>
+                                <path d="M4 17H20V19H4V17Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Программирование</h3>
+                        <p>Обучение языкам Python, JavaScript, разработка игр, мобильных приложений и веб-сайтов</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 8-14 лет</span>
+                            <span><i class="fas fa-clock"></i> 4 раза в неделю</span>
+                        </div>
+                        <a href="программирование.html" class="btn btn-small btn-primary">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.3s;">
+                    <div class="section-card-image">
+                        <div class="custom-image">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3L2 12L5 12L5 20L11 20L11 14L13 14L13 20L19 20L19 12L22 12L12 3Z" fill="white"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="section-card-content">
+                        <h3>Авиамоделирование</h3>
+                        <p>Создание летательных аппаратов от простейших моделей до радиоуправляемых самолетов и квадрокоптеров</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 9-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 2 раза в неделю</span>
+                        </div>
+                        <a href="авиамоделирование.html" class="btn btn-small btn-primary">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="section-card animated fadeIn" style="animation-delay: 0.4s;">
+                    <div class="section-card-image">
+                        <div class="custom-image">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="white"/>
+                                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="section-card-content">
+                        <h3>3D-моделирование</h3>
+                        <p>Обучение созданию 3D-моделей, работе с 3D-принтерами и сканерами, основам 3D-анимации</p>
+                        <div class="section-card-meta">
+                            <span><i class="fas fa-user-friends"></i> 10-18 лет</span>
+                            <span><i class="fas fa-clock"></i> 3 раза в неделю</span>
+                        </div>
+                        <a href="3d-моделирование.html" class="btn btn-small btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="кружки.html" class="btn btn-primary btn-large pulse">Все направления</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title animated fadeIn">
+                <h2>Последние новости</h2>
+                <p>Будьте в курсе наших событий, достижений и предстоящих мероприятий</p>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card animated fadeIn" style="animation-delay: 0.1s;">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Новость 1">
+                        <span class="news-category">Соревнования</span>
+                    </div>
+                    <div class="news-content">
+                        <h3><a href="новость1.html">Победа на Всероссийских соревнованиях по робототехнике</a></h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 мая 2025</span>
+                            <span><i class="far fa-user"></i> Иван Петров</span>
+                            <span><i class="far fa-eye"></i> 245</span>
+                        </div>
+                        <p class="news-excerpt">Наша команда "ТехноГений" заняла первое место в категории "Роботы-помощники" на Всероссийских соревнованиях по робототехнике в Москве...</p>
+                        <a href="новость1.html" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" style="animation-delay: 0.2s;">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Новость 2">
+                        <span class="news-category">Мероприятие</span>
+                    </div>
+                    <div class="news-content">
+                        <h3><a href="новость2.html">Летний технический лагерь "Инженеры будущего"</a></h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10 мая 2025</span>
+                            <span><i class="far fa-user"></i> Мария Сидорова</span>
+                            <span><i class="far fa-eye"></i> 178</span>
+                        </div>
+                        <p class="news-excerpt">Приглашаем детей 10-15 лет в летний технический лагерь "Инженеры будущего". 2 недели интенсивных занятий, мастер-классов и экскурсий...</p>
+                        <a href="новость2.html" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" style="animation-delay: 0.3s;">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1581093057305-25a0a6b9c8c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Новость 3">
+                        <span class="news-category">Достижения</span>
+                    </div>
+                    <div class="news-content">
+                        <h3><a href="новость3.html">Новая лаборатория 3D-печати открыта!</a></h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 5 мая 2025</span>
+                            <span><i class="far fa-user"></i> Алексей Иванов</span>
+                            <span><i class="far fa-eye"></i> 312</span>
+                        </div>
+                        <p class="news-excerpt">Благодаря гранту от Министерства образования мы открыли новую лабораторию 3D-печати, оснащенную современными 3D-принтерами и сканерами...</p>
+                        <a href="новость3.html" class="read-more">Читать далее <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="новости.html" class="btn btn-outline">Все новости <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section events-section">
+        <div class="container">
+            <div class="section-title animated fadeIn">
+                <h2>Ближайшие мероприятия</h2>
+                <p>Примите участие в наших событиях и конкурсах</p>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card animated fadeIn" style="animation-delay: 0.1s;">
+                    <h3>Открытый урок по робототехнике</h3>
+                    <p>Приглашаем всех желающих на бесплатный открытый урок, где вы сможете познакомиться с основами робототехники и создать своего первого робота.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-calendar-alt"></i> 7 июня 2025</span>
+                        <span><i class="far fa-clock"></i> 12:00-15:00</span>
+                    </div>
+                    <a href="мероприятие1.html" class="btn btn-outline" style="color: var(--white); border-color: var(--white);">Подробнее</a>
+                </div>
+                
+                <div class="event-card animated fadeIn" style="animation-delay: 0.2s;">
+                    <h3>Технический хакатон</h3>
+                    <p>24-часовой марафон для юных программистов и инженеров. Решайте реальные задачи и выигрывайте призы!</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-calendar-alt"></i> 10-11 июня 2025</span>
+                        <span><i class="far fa-clock"></i> 11:00-13:00</span>
+                    </div>
+                    <a href="мероприятие2.html" class="btn btn-outline" style="color: var(--white); border-color: var(--white);">Подробнее</a>
+                </div>
+                
+                <div class="event-card animated fadeIn" style="animation-delay: 0.3s;">
+                    <h3>Выставка технического творчества</h3>
+                    <p>Ежегодная выставка работ наших учеников. Приходите посмотреть на лучшие проекты по робототехнике, 3D-моделированию и авиамоделированию.</p>
+                    <div class="event-meta">
+                        <span><i class="far fa-calendar-alt"></i> 18 июня 2025</span>
+                        <span><i class="far fa-clock"></i> 10:00-14:00</span>
+                    </div>
+                    <a href="мероприятие3.html" class="btn btn-outline" style="color: var(--white); border-color: var(--white);">Подробнее</a>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="мероприятия.html" class="btn btn-accent">Все мероприятия</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>Станция юных техников</h3>
+                    <p>Муниципальное образовательное учреждение дополнительного образования для детей и подростков. Развиваем техническое творчество с 1987 года.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/sut_leningradskaj?ysclid=may5qfnbgu175995308" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/s/mbodosutlen" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://ok.ru/profile/588303204039/statuses" target="_blank"><i class="fab fa-odnoklassniki"></i></a>
+                        <a class="tahumsi-icon" href="#" target="_blank">
+                            <img src="image.png" alt="TAHUMSI">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="quick-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="кружки.html"><i class="fas fa-chevron-right"></i> Направления</a></li>
+                        <li><a href="мероприятия.html"><i class="fas fa-chevron-right"></i> Мероприятия</a></li>
+                        <li><a href="новости.html"><i class="fas fa-chevron-right"></i> Новости</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Расписание</h3>
+                    <ul class="opening-hours">
+                        <li><span>Понедельник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Вторник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Среда</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Четверг</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Пятница</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Суббота</span> <span>8:00 - 13:00</span></li>
+                        <li><span>Воскресенье</span> <span>Выходной</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Станция юных техников. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Анимация загрузки
+            setTimeout(function() {
+                $('.loader-wrapper').fadeOut('slow');
+            }, 1000);
+
+            // Мобильное меню
+            $('.mobile-menu-toggle').click(function() {
+                $(this).toggleClass('active');
+                $('.main-nav').toggleClass('active');
+            });
+            
+            // Поиск
+            $('.search-toggle').click(function() {
+                $('.search-form').toggleClass('active');
+                if ($('.search-form').hasClass('active')) {
+                    $('.search-form input').focus();
+                }
+            });
+            
+            // Закрытие поиска при клике вне формы
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.search-form, .search-toggle').length) {
+                    $('.search-form').removeClass('active');
+                    $('.search-results').removeClass('active');
+                }
+            });
+            
+            // Поиск по сайту
+            const searchData = [
+                {title: "Робототехника", url: "робототехника.html", category: "Направление"},
+                {title: "Программирование", url: "программирование.html", category: "Направление"},
+                {title: "Авиамоделирование", url: "авиамоделирование.html", category: "Направление"},
+                {title: "3D-моделирование", url: "3d-моделирование.html", category: "Направление"},
+                {title: "Технический хакатон", url: "мероприятие2.html", category: "Мероприятие"},
+                {title: "Выставка технического творчества", url: "мероприятие3.html", category: "Мероприятие"},
+                {title: "Открытый урок по робототехнике", url: "мероприятие1.html", category: "Мероприятие"},
+                {title: "Новости", url: "новости.html", category: "Раздел"},
+                {title: "Мероприятия", url: "мероприятия.html", category: "Раздел"}
+            ];
+            
+            $('.search-form input').on('input', function() {
+                const query = $(this).val().toLowerCase();
+                const resultsContainer = $('.search-results');
+                
+                if (query.length < 2) {
+                    resultsContainer.empty().removeClass('active');
+                    return;
+                }
+                
+                const results = searchData.filter(item => 
+                    item.title.toLowerCase().includes(query)
+                );
+                
+                if (results.length > 0) {
+                    let html = '';
+                    results.forEach(item => {
+                        html += `
+                            <a href="${item.url}">
+                                <strong>${item.title}</strong>
+                                <span>${item.category}</span>
+                            </a>
+                        `;
+                    });
+                    resultsContainer.html(html).addClass('active');
+                } else {
+                    resultsContainer.html('<div class="no-results">Ничего не найдено</div>').addClass('active');
+                }
+            });
+            
+            // Отправка формы поиска
+            $('.search-form').submit(function(e) {
+                e.preventDefault();
+                const query = $(this).find('input').val().toLowerCase();
+                const result = searchData.find(item => 
+                    item.title.toLowerCase() === query
+                );
+                
+                if (result) {
+                    window.location.href = result.url;
+                } else {
+                    showAlert('Ничего не найдено. Попробуйте другой запрос.', 'error');
+                }
+            });
+            
+            // Кнопка "Наверх"
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('active');
+                } else {
+                    $('.back-to-top').removeClass('active');
+                }
+                
+                // Фиксированная шапка
+                if ($(this).scrollTop() > 100) {
+                    $('.header').addClass('scroll-up');
+                } else {
+                    $('.header').removeClass('scroll-up');
+                }
+            });
+            
+            $('.back-to-top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 500);
+            });
+            
+            // Плавная прокрутка
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(e) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 500, function() {
+                            var $target = $(target);
+                            if ($target.is(':focus')) {
+                                return false;
+                            } else {
+                                $target.attr('tabindex','-1');
+                                $target.focus();
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // Анимации при прокрутке
+            function animateOnScroll() {
+                $('.news-card, .section-card, .info-card, .event-card').each(function() {
+                    var elementPos = $(this).offset().top;
+                    var windowHeight = $(window).height();
+                    var scrollPos = $(window).scrollTop();
+                    
+                    if (elementPos < scrollPos + windowHeight - 100) {
+                        $(this).addClass('animated fadeIn');
+                    }
+                });
+            }
+            
+            $(window).scroll(animateOnScroll);
+            animateOnScroll();
+            
+            // Валидация email
+            function validateEmail(email) {
+                var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Всплывающее уведомление
+            function showAlert(message, type) {
+                var alert = $('<div class="alert alert-' + type + '">' + message + '</div>');
+                $('body').append(alert);
+                alert.css({
+                    'position': 'fixed',
+                    'top': '20px',
+                    'right': '20px',
+                    'padding': '15px 25px',
+                    'background': type === 'success' ? 'var(--success-color)' : 'var(--accent-color)',
+                    'color': 'white',
+                    'border-radius': 'var(--border-radius)',
+                    'box-shadow': 'var(--box-shadow)',
+                    'z-index': '9999',
+                    'animation': 'fadeIn 0.3s ease'
+                });
+                
+                setTimeout(function() {
+                    alert.animate({opacity: 0}, 300, function() {
+                        $(this).remove();
+                    });
+                }, 3000);
+            }
+
+            // Адаптивное меню для мобильных устройств
+            function checkScreenSize() {
+                if ($(window).width() <= 992) {
+                    $('.mobile-menu-toggle').show();
+                } else {
+                    $('.mobile-menu-toggle').hide();
+                    $('.main-nav').removeClass('active');
+                }
+            }
+
+            // Проверяем размер экрана при загрузке и изменении размера
+            $(window).on('load resize', checkScreenSize);
+            checkScreenSize();
+        });
+    </script>
+</body>
+</html>

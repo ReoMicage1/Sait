@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Станция юных техников</title>
+    <meta name="description" content="Последние новости и события Станции юных техников. Следите за нашими достижениями, мероприятиями и обновлениями.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a3e72;
+            --secondary-color: #2a76d2;
+            --accent-color: #74bdd1;
+            --light-color: #f5f9ff;
+            --dark-color: #0d1f3d;
+            --text-color: #2d3748;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --border-radius: 8px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --event-color: #74bdd1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-color);
+            line-height: 1.7;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            cursor: pointer;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #1e62b8;
+            border-color: #1e62b8;
+            box-shadow: 0 6px 16px rgba(42, 118, 210, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.2);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(116, 189, 209, 0.3);
+        }
+
+        .btn-accent:hover {
+            background-color: #5da9c1;
+            border-color: #5da9c1;
+            box-shadow: 0 6px 16px rgba(116, 189, 209, 0.4);
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 1.1rem;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .header {
+            background-color: var(--white);
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header.scroll-down {
+            transform: translateY(-100%);
+        }
+
+        .header.scroll-up {
+            transform: translateY(0);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            gap: 12px;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 5px;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            font-weight: 500;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--white);
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .main-nav a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-toggle {
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .search-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(42, 118, 210, 0.05);
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--white);
+            background-color: var(--secondary-color);
+        }
+
+        .search-form {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            max-width: 500px;
+            background-color: var(--white);
+            padding: 15px;
+            box-shadow: var(--box-shadow-hover);
+            border-radius: var(--border-radius);
+            transform: translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 100;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-form.active {
+            transform: translateY(10px);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-form .form-group {
+            position: relative;
+            width: 100%;
+            display: flex;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid rgba(42, 118, 210, 0.2);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            padding-right: 50px;
+        }
+
+        .search-form input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(42, 118, 210, 0.2);
+            outline: none;
+        }
+
+        .search-form button[type="submit"] {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .search-form button[type="submit"]:hover {
+            background-color: rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-hover);
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            z-index: 101;
+            border: 1px solid rgba(42, 118, 210, 0.1);
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .news-hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(26, 62, 120, 0.9), rgba(42, 118, 210, 0.8));
+            color: var(--white);
+            padding: 120px 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .news-hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            z-index: -1;
+            animation: zoomInOut 20s infinite alternate;
+        }
+
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .news-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .news-hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .news-filters {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            width: 100%;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: rgba(42, 118, 210, 0.1);
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px) rotateY(10deg) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            transform: translateZ(20px);
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05) translateZ(20px);
+        }
+
+        .news-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--event-color);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: translateZ(30px);
+        }
+
+        .news-content {
+            padding: 25px;
+            transform-style: preserve-3d;
+        }
+
+        .news-content h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            transform: translateZ(15px);
+        }
+
+        .news-content h3 a {
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+
+        .news-content h3 a:hover {
+            color: var(--secondary-color);
+        }
+
+        .news-meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            gap: 15px;
+            transform: translateZ(10px);
+        }
+
+        .news-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .news-meta i {
+            font-size: 0.9rem;
+        }
+
+        .news-excerpt {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            transform: translateZ(5px);
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transform: translateZ(10px);
+            cursor: pointer;
+        }
+
+        .register-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 16px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .register-btn:hover {
+            background-color: #3d8b40;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-hover);
+            max-width: 500px;
+            width: 90%;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            color: var(--text-light);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--dark-color);
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 118, 210, 0.2);
+        }
+
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #1e62b8;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 10px;
+        }
+
+        .pagination a, 
+        .pagination span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .pagination a:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .pagination .current {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(42, 118, 210, 0.3);
+        }
+
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%231a3e72"></path><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%231a3e72"></path><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231a3e72"></path></svg>') no-repeat;
+            background-size: cover;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .contact-info i {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-top: 3px;
+        }
+
+        .quick-links li {
+            margin-bottom: 12px;
+        }
+
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .quick-links i {
+            font-size: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .opening-hours li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .opening-hours span:first-child {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom {
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--event-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(116, 189, 209, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: #5da9c1;
+            transform: translateY(-3px) rotateY(10deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .slideInUp {
+            animation-name: slideInUp;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid var(--white);
+            border-bottom-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Стили для развернутой новости */
+        .news-full-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .news-full-content.show {
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .main-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .main-nav.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .main-nav li {
+                margin-left: 0;
+            }
+
+            .main-nav a {
+                padding: 12px 15px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .news-hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .news-hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .news-hero {
+                padding: 100px 0;
+            }
+
+            .news-hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-group {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .news-hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .header-actions {
+                gap: 10px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-col {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="modal-title">Записаться на мероприятие</h3>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="eventName">Мероприятие</label>
+                    <input type="text" id="eventName" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="fullName">ФИО участника</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Возраст</label>
+                    <input type="number" id="age" min="6" max="18" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон родителя</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Комментарий</label>
+                    <textarea id="comment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="главная.html" class="logo">
+                    <img src="image.png" alt="Станция юных техников">
+                    <span>СЮТ</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="active">Главная</a></li>
+                        <li><a href="index (3).html">Направления</a></li>
+                        <li><a href="(Index (4).html">Мероприятия</a></li>
+                        <li><a href="index (5).html">Новости</a></li>
+                        <li><a href="index (2).html">О нас</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="mobile-menu-toggle" style="display: none;">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <form class="search-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Поиск по новостям..." required>
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-results"></div>
+            </form>
+        </div>
+    </header>
+
+    <section class="news-hero">
+        <div class="news-hero-background"></div>
+        <div class="news-hero-content animated slideInUp">
+            <h1>Новости и события</h1>
+            <p>Будьте в курсе последних достижений наших учеников, мероприятий и новостей Станции юных техников</p>
+            <a href="#news" class="btn btn-primary btn-large">
+                <i class="fas fa-arrow-down"></i> Читать новости
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="news">
+        <div class="container">
+            <div class="news-filters">
+                <div class="filter-group">
+                    <div style="width: 100%;">
+                        <div class="filter-title">Категории:</div>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-category="all">Все</button>
+                            <button class="filter-btn" data-category="competitions">Соревнования</button>
+                            <button class="filter-btn" data-category="events">Мероприятия</button>
+                            <button class="filter-btn" data-category="achievements">Достижения</button>
+                            <button class="filter-btn" data-category="education">Обучение</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <div style="width: 100%;">
+                        <div class="filter-title">Год:</div>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-year="all">Все</button>
+                            <button class="filter-btn" data-year="2025">2025</button>
+                            <button class="filter-btn" data-year="2024">2024</button>
+                            <button class="filter-btn" data-year="2023">2023</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card animated fadeIn" data-category="competitions" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Победа на соревнованиях">
+                        <span class="news-category">Соревнования</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Победа на Всероссийских соревнованиях по робототехнике</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 мая 2025</span>
+                            <span><i class="far fa-user"></i> Иван Петров</span>
+                            <span><i class="far fa-eye"></i> 245</span>
+                        </div>
+                        <p class="news-excerpt">Наша команда "ТехноГений" заняла первое место в категории "Роботы-помощники" на Всероссийских соревнованиях по робототехнике в Москве.</p>
+                        <div class="news-full-content">
+                            <p>Робот, созданный учениками, успешно выполнил все задания, включая транспортировку грузов и преодоление препятствий. Особенно судьям понравилось оригинальное решение для захвата предметов, которое разработала наша команда.</p>
+                            <p>Соревнования проходили в течение трех дней, в них приняли участие более 100 команд со всей России. Наши ребята показали не только технические навыки, но и умение работать в команде, быстро находить решения в сложных ситуациях.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Победа на Всероссийских соревнованиях по робототехнике"><i class="fas fa-user-plus"></i> Записаться на соревнования</a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="events" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Летний лагерь">
+                        <span class="news-category">Мероприятие</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Летний технический лагерь "Инженеры будущего"</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10 мая 2025</span>
+                            <span><i class="far fa-user"></i> Мария Сидорова</span>
+                            <span><i class="far fa-eye"></i> 178</span>
+                        </div>
+                        <p class="news-excerpt">Приглашаем детей 10-15 лет в летний технический лагерь "Инженеры будущего". 2 недели интенсивных занятий, мастер-классов и экскурсий на предприятия.</p>
+                        <div class="news-full-content">
+                            <p>Программа лагеря включает:</p>
+                            <ul>
+                                <li>Основы программирования на Python и Scratch</li>
+                                <li>Создание и программирование роботов на базе Arduino и LEGO Mindstorms</li>
+                                <li>3D-моделирование и печать на 3D-принтерах</li>
+                                <li>Основы электроники и схемотехники</li>
+                                <li>Экскурсии на ведущие технические предприятия города</li>
+                            </ul>
+                            <p>Лагерь будет работать с 1 по 14 июня. Стоимость участия - 15 000 рублей, включая питание и все материалы. Для постоянных учеников СЮТ действует скидка 10%.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Летний технический лагерь 'Инженеры будущего'"><i class="fas fa-user-plus"></i> Записаться в лагерь</a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="achievements" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1581093057305-25a0a6b9c8c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Новая лаборатория">
+                        <span class="news-category">Достижения</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Новая лаборатория 3D-печати открыта!</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 5 мая 2025</span>
+                            <span><i class="far fa-user"></i> Алексей Иванов</span>
+                            <span><i class="far fa-eye"></i> 312</span>
+                        </div>
+                        <p class="news-excerpt">Благодаря гранту от Министерства образования мы открыли новую лабораторию 3D-печати, оснащенную современными 3D-принтерами и сканерами.</p>
+                        <div class="news-full-content">
+                            <p>Лаборатория оборудована 5 профессиональными 3D-принтерами с возможностью печати различными материалами, включая PLA, ABS и нейлон. Также в лаборатории установлены 3D-сканеры для оцифровки объектов.</p>
+                            <p>Теперь у наших учеников есть возможность реализовывать самые смелые проекты - от прототипирования деталей роботов до создания художественных объектов. Первые проекты, созданные в новой лаборатории, уже были представлены на городской выставке технического творчества.</p>
+                            <p>Занятия в лаборатории будут проходить в рамках курса "Основы 3D-моделирования и прототипирования", а также будут доступны для индивидуальных проектов.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="achievements" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Выпускники">
+                        <span class="news-category">Достижения</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Наши выпускники поступили в ведущие технические вузы</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 28 апреля 2025</span>
+                            <span><i class="far fa-user"></i> Ольга Кузнецова</span>
+                            <span><i class="far fa-eye"></i> 189</span>
+                        </div>
+                        <p class="news-excerpt">15 выпускников Станции юных техников этого года поступили в МГТУ им. Баумана, МФТИ и другие престижные технические университеты.</p>
+                        <div class="news-full-content">
+                            <p>Мы гордимся их успехами и желаем дальнейших достижений! Среди поступивших:</p>
+                            <ul>
+                                <li>Иванов Петр - МГТУ им. Баумана, факультет робототехники</li>
+                                <li>Смирнова Анна - МФТИ, прикладная математика и физика</li>
+                                <li>Козлов Дмитрий - СПбГПУ, компьютерные технологии</li>
+                                <li>Васильева Елена - МИФИ, ядерная физика</li>
+                            </ul>
+                            <p>Многие из них занимались на Станции юных техников по 5-7 лет, начиная с базовых курсов и заканчивая сложными индивидуальными проектами. Их успех - лучшее подтверждение качества нашего образования.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="events" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Мастер-класс">
+                        <span class="news-category">Мероприятие</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Мастер-класс по созданию дронов</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 20 апреля 2025</span>
+                            <span><i class="far fa-user"></i> Дмитрий Смирнов</span>
+                            <span><i class="far fa-eye"></i> 156</span>
+                        </div>
+                        <p class="news-excerpt">Приглашаем всех желающих на бесплатный мастер-класс по созданию и программированию квадрокоптеров.</p>
+                        <div class="news-full-content">
+                            <p>На мастер-классе участники:</p>
+                            <ul>
+                                <li>Узнают основы устройства и принципы работы квадрокоптеров</li>
+                                <li>Соберут своего первого дрона из готовых компонентов</li>
+                                <li>Научатся программировать базовые режимы полета</li>
+                                <li>Попробуют управлять дроном на специальном полигоне</li>
+                            </ul>
+                            <p>Мастер-класс состоится 15 мая в 16:00 в лаборатории авиамоделирования. Количество мест ограничено, требуется предварительная регистрация. Рекомендуемый возраст участников - от 12 лет.</p>
+                            <p>Ведущий мастер-класса - Сергей Петров, чемпион России по дрон-рейсингу, преподаватель курса "Беспилотные авиационные системы" на СЮТ.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Мастер-класс по созданию дронов"><i class="fas fa-user-plus"></i> Записаться на мастер-класс</a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="education" data-year="2025">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Новый курс">
+                        <span class="news-category">Обучение</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Открыт набор на новый курс "Искусственный интеллект для начинающих"</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 апреля 2025</span>
+                            <span><i class="far fa-user"></i> Анна Васильева</span>
+                            <span><i class="far fa-eye"></i> 203</span>
+                        </div>
+                        <p class="news-excerpt">С сентября стартует новый курс для подростков 14-17 лет, где они познакомятся с основами машинного обучения и нейронных сетей.</p>
+                        <div class="news-full-content">
+                            <p>Программа курса включает:</p>
+                            <ul>
+                                <li>Основы Python для анализа данных</li>
+                                <li>Введение в машинное обучение</li>
+                                <li>Работа с библиотеками NumPy, Pandas, Matplotlib</li>
+                                <li>Основы нейронных сетей и глубокого обучения</li>
+                                <li>Практические проекты: распознавание изображений, обработка текстов</li>
+                            </ul>
+                            <p>Курс ведет преподаватель с опытом работы в крупной IT-компании. Занятия будут проходить 2 раза в неделю по 2 академических часа. По окончании курса участники получат сертификаты и смогут представить свои проекты на школьной конференции.</p>
+                            <p>Для записи на курс необходимо пройти тестирование по основам программирования на Python.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Курс 'Искусственный интеллект для начинающих'"><i class="fas fa-user-plus"></i> Записаться на курс</a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="competitions" data-year="2024">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Хакатон">
+                        <span class="news-category">Соревнования</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Итоги регионального хакатона по программированию</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10 декабря 2024</span>
+                            <span><i class="far fa-user"></i> Сергей Козлов</span>
+                            <span><i class="far fa-eye"></i> 134</span>
+                        </div>
+                        <p class="news-excerpt">Наши команды заняли призовые места на региональном хакатоне по программированию.</p>
+                        <div class="news-full-content">
+                            <p>Участники разрабатывали приложения для решения экологических проблем города. В течение 24 часов команды работали над проектами в следующих номинациях:</p>
+                            <ul>
+                                <li>Лучшее мобильное приложение для экологического мониторинга</li>
+                                <li>Лучшее веб-приложение для утилизации отходов</li>
+                                <li>Лучший анализ данных для экологических исследований</li>
+                            </ul>
+                            <p>Наша команда "EcoTech" заняла 2 место в номинации "Мобильное приложение" с проектом "Чистый город" - приложением для сбора и анализа данных о несанкционированных свалках.</p>
+                            <p>Команда "GreenCode" получила специальный приз жюри за инновационный подход к визуализации данных о загрязнении воздуха.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Региональный хакатон по программированию"><i class="fas fa-user-plus"></i> Записаться на хакатон</a>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="achievements" data-year="2024">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Награды">
+                        <span class="news-category">Достижения</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Вручение ежегодных премий "Технолидер"</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 25 ноября 2024</span>
+                            <span><i class="far fa-user"></i> Елена Морозова</span>
+                            <span><i class="far fa-eye"></i> 167</span>
+                        </div>
+                        <p class="news-excerpt">Состоялась церемония вручения ежегодных премий "Технолидер" самым талантливым ученикам Станции юных техников.</p>
+                        <div class="news-full-content">
+                            <p>Победители получили ценные призы и сертификаты на обучение. Премии вручались в 5 номинациях:</p>
+                            <ul>
+                                <li>"Прорыв года" - за самый значительный прогресс в обучении</li>
+                                <li>"Техническое решение" - за лучший инженерный проект</li>
+                                <li>"Программист года" - за выдающиеся достижения в программировании</li>
+                                <li>"Научный подход" - за лучшую исследовательскую работу</li>
+                                <li>"Командный дух" - за вклад в развитие коллектива</li>
+                            </ul>
+                            <p>Гран-при конкурса и главный приз - ноутбук для программирования - получил ученик 10 класса Андрей Семенов за проект "Умная теплица на базе Arduino".</p>
+                            <p>Церемония прошла в торжественной обстановке с участием представителей городской администрации и партнеров СЮТ из IT-компаний.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </article>
+                
+                <article class="news-card animated fadeIn" data-category="education" data-year="2023">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Курсы">
+                        <span class="news-category">Обучение</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>Новые курсы по кибербезопасности для подростков</h3>
+                        <div class="news-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 сентября 2023</span>
+                            <span><i class="far fa-user"></i> Андрей Новиков</span>
+                            <span><i class="far fa-eye"></i> 221</span>
+                        </div>
+                        <p class="news-excerpt">Станция юных техников запускает уникальные курсы по основам кибербезопасности.</p>
+                        <div class="news-full-content">
+                            <p>Программа разработана совместно с экспертами из IT-индустрии и включает:</p>
+                            <ul>
+                                <li>Основы безопасности в интернете</li>
+                                <li>Криптография и защита данных</li>
+                                <li>Этичный хакинг и тестирование на проникновение</li>
+                                <li>Защита персональных данных</li>
+                                <li>Юридические аспекты кибербезопасности</li>
+                            </ul>
+                            <p>Курсы рассчитаны на подростков 14-18 лет с базовыми знаниями программирования. Занятия ведут практикующие специалисты по информационной безопасности.</p>
+                            <p>По окончании курса участники смогут:</p>
+                            <ul>
+                                <li>Защищать свои данные в сети</li>
+                                <li>Понимать основные угрозы и уязвимости</li>
+                                <li>Применять базовые методы криптографии</li>
+                                <li>Проводить простые тесты на безопасность</li>
+                            </ul>
+                            <p>Лучшие выпускники получат рекомендации для стажировки в компаниях-партнерах.</p>
+                        </div>
+                        <div class="read-more">Читать далее <i class="fas fa-arrow-right"></i></div>
+                        <a href="#" class="register-btn" data-event="Курсы по кибербезопасности"><i class="fas fa-user-plus"></i> Записаться на курс</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="pagination">
+                <a href="новости.html"><i class="fas fa-chevron-left"></i></a>
+                <a href="новости.html" class="current">1</a>
+                <a href="новости-страница2.html">2</a>
+                <a href="новости-страница3.html">3</a>
+                <a href="новости-страница2.html"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <h3>Станция юных техников</h3>
+                    <p>Муниципальное образовательное учреждение дополнительного образования для детей и подростков. Развиваем техническое творчество с 1987 года.</p>
+                    <div class="social-links">
+                        <a href="https://vk.com/sut_leningradskaj?ysclid=may5qfnbgu175995308" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/s/mbodosutlen" target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://ok.ru/profile/588303204039/statuses" target="_blank"><i class="fab fa-odnoklassniki"></i></a>
+                        <a class="tahumsi-icon" href="#" target="_blank">
+                            <img src="image.png" alt="TAHUMSI">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Быстрые ссылки</h3>
+                    <ul class="quick-links">
+                        <li><a href="главная.html"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="кружки.html"><i class="fas fa-chevron-right"></i> Направления</a></li>
+                        <li><a href="мероприятия.html"><i class="fas fa-chevron-right"></i> Мероприятия</a></li>
+                        <li><a href="новости.html"><i class="fas fa-chevron-right"></i> Новости</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Расписание</h3>
+                    <ul class="opening-hours">
+                        <li><span>Понедельник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Вторник</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Среда</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Четверг</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Пятница</span> <span>8:00 - 16:00</span></li>
+                        <li><span>Суббота</span> <span>8:00 - 13:00</span></li>
+                        <li><span>Воскресенье</span> <span>Выходной</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Станция юных техников. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.loader-wrapper').fadeOut('slow');
+            }, 1000);
+
+            $('.mobile-menu-toggle').click(function() {
+                $(this).toggleClass('active');
+                $('.main-nav').toggleClass('active');
+            });
+            
+            $('.search-toggle').click(function() {
+                $('.search-form').toggleClass('active');
+                if ($('.search-form').hasClass('active')) {
+                    $('.search-form input').focus();
+                }
+            });
+            
+            $(document).click(function(e) {
+                if (!$(e.target).closest('.search-form, .search-toggle').length) {
+                    $('.search-form').removeClass('active');
+                    $('.search-results').removeClass('active');
+                }
+            });
+            
+            const newsData = [
+                {title: "Победа на Всероссийских соревнованиях по робототехнике", url: "новость1.html", category: "Соревнования", year: "2025"},
+                {title: "Летний технический лагерь", url: "новость2.html", category: "Мероприятие", year: "2025"},
+                {title: "Новая лаборатория 3D-печати", url: "новость3.html", category: "Достижения", year: "2025"},
+                {title: "Выпускники поступили в ведущие вузы", url: "новость4.html", category: "Достижения", year: "2025"},
+                {title: "Мастер-класс по созданию дронов", url: "новость5.html", category: "Мероприятие", year: "2025"},
+                {title: "Новый курс по ИИ", url: "новость6.html", category: "Обучение", year: "2025"},
+                {title: "Итоги регионального хакатона", url: "новость7.html", category: "Соревнования", year: "2024"},
+                {title: "Вручение премий Технолидер", url: "новость8.html", category: "Достижения", year: "2024"},
+                {title: "Курсы по кибербезопасности", url: "новость9.html", category: "Обучение", year: "2023"}
+            ];
+            
+            $('.search-form input').on('input', function() {
+                const query = $(this).val().toLowerCase();
+                const resultsContainer = $('.search-results');
+                
+                if (query.length < 2) {
+                    resultsContainer.empty().removeClass('active');
+                    return;
+                }
+                
+                const results = newsData.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.category.toLowerCase().includes(query)
+                );
+                
+                if (results.length > 0) {
+                    let html = '';
+                    results.forEach(item => {
+                        html += `
+                            <a href="${item.url}">
+                                <strong>${item.title}</strong>
+                                <span>${item.category} (${item.year})</span>
+                            </a>
+                        `;
+                    });
+                    resultsContainer.html(html).addClass('active');
+                } else {
+                    resultsContainer.html('<div class="no-results">Ничего не найдено</div>').addClass('active');
+                }
+            });
+            
+            $('.filter-btn').click(function() {
+                const $this = $(this);
+                const filterGroup = $this.parent();
+                
+                filterGroup.find('.filter-btn').removeClass('active');
+                $this.addClass('active');
+                
+                applyFilters();
+            });
+            
+            function applyFilters() {
+                const category = $('.filter-buttons:first').find('.active').data('category');
+                const year = $('.filter-buttons:last').find('.active').data('year');
+                
+                $('.news-card').each(function() {
+                    const $card = $(this);
+                    const cardCategory = $card.data('category');
+                    const cardYear = $card.data('year');
+                    
+                    const categoryMatch = category === 'all' || cardCategory === category;
+                    const yearMatch = year === 'all' || cardYear === year;
+                    
+                    if (categoryMatch && yearMatch) {
+                        $card.show();
+                    } else {
+                        $card.hide();
+                    }
+                });
+            }
+            
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('active');
+                } else {
+                    $('.back-to-top').removeClass('active');
+                }
+                
+                if ($(this).scrollTop() > 100) {
+                    $('.header').addClass('scroll-up');
+                } else {
+                    $('.header').removeClass('scroll-up');
+                }
+            });
+            
+            $('.back-to-top').click(function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, 500);
+            });
+            
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(e) {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        e.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 80
+                        }, 500, function() {
+                            var $target = $(target);
+                            if ($target.is(':focus')) {
+                                return false;
+                            } else {
+                                $target.attr('tabindex','-1');
+                                $target.focus();
+                            }
+                        });
+                    }
+                }
+            });
+            
+            function animateOnScroll() {
+                $('.news-card').each(function() {
+                    var elementPos = $(this).offset().top;
+                    var windowHeight = $(window).height();
+                    var scrollPos = $(window).scrollTop();
+                    
+                    if (elementPos < scrollPos + windowHeight - 100) {
+                        $(this).addClass('animated fadeIn');
+                    }
+                });
+            }
+            
+            $(window).scroll(animateOnScroll);
+            animateOnScroll();
+            
+            function checkScreenSize() {
+                if ($(window).width() <= 992) {
+                    $('.mobile-menu-toggle').show();
+                } else {
+                    $('.mobile-menu-toggle').hide();
+                    $('.main-nav').removeClass('active');
+                }
+            }
+
+            $(window).on('load resize', checkScreenSize);
+            checkScreenSize();
+
+            const modal = $('#registerModal');
+            const registerBtns = $('.register-btn');
+            const eventNameInput = $('#eventName');
+            
+            registerBtns.click(function(e) {
+                e.preventDefault();
+                const eventName = $(this).data('event');
+                eventNameInput.val(eventName);
+                modal.show();
+            });
+            
+            $('.close-modal').click(function() {
+                modal.hide();
+            });
+            
+            $(window).click(function(e) {
+                if (e.target == modal[0]) {
+                    modal.hide();
+                }
+            });
+            
+            $('#registerForm').submit(function(e) {
+                e.preventDefault();
+                alert('Ваша заявка на участие в мероприятии "' + eventNameInput.val() + '" отправлена! Мы свяжемся с вами в ближайшее время.');
+                $(this).trigger('reset');
+                modal.hide();
+            });
+
+            // Обработка кнопки "Читать далее"
+            $('.read-more').click(function(e) {
+                e.preventDefault();
+                const newsCard = $(this).closest('.news-card');
+                const fullContent = newsCard.find('.news-full-content');
+                
+                if (fullContent.hasClass('show')) {
+                    fullContent.removeClass('show');
+                    $(this).html('Читать далее <i class="fas fa-arrow-right"></i>');
+                } else {
+                    fullContent.addClass('show');
+                    $(this).html('Свернуть <i class="fas fa-arrow-up"></i>');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
